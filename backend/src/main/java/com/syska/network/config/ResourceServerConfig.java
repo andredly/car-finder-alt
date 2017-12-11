@@ -27,10 +27,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/users/register","/api/hello", "/logoutuser").permitAll()
+                .antMatchers("/","/login","/users/register","/api/hello", "/logout").permitAll()
                 .anyRequest()
                 .authenticated()
-                .and().logout().logoutUrl("/logoutuser").logoutSuccessHandler(customLogoutSuccessHandler);
+                .and().logout().logoutUrl("/logout").logoutSuccessHandler(customLogoutSuccessHandler);
     }
 
     @Override

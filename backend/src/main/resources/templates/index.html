@@ -7,13 +7,11 @@
     <div class="container">
         <div class="row">
             <div class="twelve columns">
-                <h1>My blog</h1>
+                <h1>MY SYTE</h1>
                 <ul>
-                    <li v-for="post in posts">
-                        <h3><a :href="getLink(post)">{{post.title}}</a></h3>
-                        <h6>Created by : {{post.creator.username}}</h6>
-                        <p>{{post.body}}</p>
-                        <hr />
+                    <li v-for="user in users">
+                    <h6>{{user.username}}</h6>
+                    <!--<p>{{comment.text}}</p>-->
                     </li>
                 </ul>
             </div>
@@ -26,19 +24,19 @@
 <script>
     var app = new Vue({
         el: '#root',
-        data : {posts: []},
+        data : {users: []},
         mounted(){
-            this.fetchPosts();
+            this.fetchUsers();
         },
         methods: {
-            fetchPosts(){
-                axios.get("/posts").then(function(response){
-                    this.posts = response.data;
+            fetchUsers(){
+                axios.get("users/all?access_token=" + getCookie('access_token')).then(function(response){
+                    this.users = response.data;
                 }.bind(this));
             },
-            getLink(post){
-                return '/post/' + post.id;
-            }
+//            getLink(post){
+//                return '/post/' + post.id;
+//            }
         }
 
     });

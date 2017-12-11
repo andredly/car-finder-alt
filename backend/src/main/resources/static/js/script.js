@@ -23,27 +23,27 @@ Vue.component('login-component',{
     },
     mounted(){
         if(getCookie("access_token")){
-            axios.get("/getUsername?access_token=" + getCookie("access_token"))
-                .then(function(response){
-                    this.logged_in_msg = "Welcome back , " + response.data;
-                    window.Event.isLoggedIn = true;
-                    Event.$emit('logged-in');
-                }.bind(this))
-                .catch(function(error){
-                    delete_cookie("access_token");
-                    return error;
-                });
+            // axios.get("/getUsername?access_token=" + getCookie("access_token"))
+            //     .then(function(response){
+            //         this.logged_in_msg = "Welcome back , " + response.data;
+            //         window.Event.isLoggedIn = true;
+            //         Event.$emit('logged-in');
+            //     }.bind(this))
+            //     .catch(function(error){
+            //         delete_cookie("access_token");
+            //         return error;
+            //     });
         }
     },
     methods : {
-        logOut(){
-            axios.get("/logouts?access_token="+getCookie("access_token"))
-                .then(function(response){
-                    window.Event.isLoggedIn = false;
-                    this.logged_in_msg  = "Successfully logged out";
-                    delete_cookie("access_token")
-                }.bind(this))
-        },
+        // logOut(){
+        //     axios.get("/logout?access_token="+getCookie("access_token"))
+        //         .then(function(response){
+        //             window.Event.isLoggedIn = false;
+        //             this.logged_in_msg  = "Successfully logged out";
+        //             delete_cookie("access_token")
+        //         }.bind(this))
+        // },
         isLoggedIn(){
             return window.Event.isLoggedIn;
         }

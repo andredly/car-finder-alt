@@ -3,18 +3,14 @@ package com.syska.network.controllers;
 import com.syska.network.entities.User;
 import com.syska.network.pojos.UserRegistration;
 import com.syska.network.services.UserService;
-import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -48,7 +44,7 @@ public class UserController {
     }
 
 
-    @GetMapping(value = "/logouts")
+    @GetMapping(value = "/logout")
     public void logout(@RequestParam(value = "access_token") String accessToken){
         tokenStore.removeAccessToken(tokenStore.readAccessToken(accessToken));
     }

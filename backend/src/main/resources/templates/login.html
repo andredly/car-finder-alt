@@ -10,9 +10,9 @@
                 <h4 id="loginHeader">Login</h4>
                 <div class="six columns align-center">
                     <label for="username">Username</label>
-                    <input v-model="username" class="u-full-width" type="text" placeholder="yourUsername" id="username"/>
+                    <input v-model="username" class="u-full-width" type="text" placeholder="username" id="username"/>
                     <label for="password">Password</label>
-                    <input v-model="password" class="u-full-width" type="password" id="password"/>
+                    <input v-model="password" class="u-full-width" type="password" placeholder="password" id="password"/>
                     <input class="u-full-width button-primary" type="submit" v-on:click="login" value="Submit" />
                 </div>
             </div>
@@ -39,6 +39,7 @@
                 params.append('grant_type', 'password');
                 params.append('username', this.username);
                 params.append('password',this.password);
+                console.log(params);
                 axios({
                     method:'post',
                     url:'oauth/token',
@@ -48,6 +49,7 @@
                 }).then(function(response){
                     set_cookie("access_token",response.data.access_token);
                     document.location.replace("/");
+                    console.log(document.cookie);
                 });
             }
         }
